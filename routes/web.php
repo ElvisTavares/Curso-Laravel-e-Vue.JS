@@ -24,21 +24,23 @@ Route::get('/login', function(){ return 'Login'; })->name('site.login');
 
 Route::prefix('/app')->group(function(){
     Route::get('/clientes', function(){ return 'Clientes'; })->name('app.clientes');
-    Route::get('/fornecedores', function(){ return 'Fornecedores'; })->name('app.fornecedores');
+    Route::get('/fornecedores', [\App\Http\Controllers\FornecedorController::class, 'index'])->name('app.fornecedores');
     Route::get('/produtos', function(){ return 'Produtos'; })->name('site.produtos');
 });
 
+Route::get('/teste/{p1}/{p2}', [\App\Http\Controllers\TesteController::class, 'index'])->name('teste');
+
 //Redirecionamento
 
-Route::get('/rota1', function(){
-    echo 'Rota 1';
-})->name('site.rota1');
+//Route::get('/rota1', function(){
+//    echo 'Rota 1';
+//})->name('site.rota1');
 
 //Route::redirect('rota2', 'rota1');
-
-Route::get('rota2', function(){
-    return redirect()->route('site.rota1');
-})->name('site.rota2');
+//
+//Route::get('rota2', function(){
+//    return redirect()->route('site.rota1');
+//})->name('site.rota2');
 //Route::get('
 //        /contat/{nome}/{categoria_id}',
 //       function(
@@ -51,9 +53,9 @@ Route::get('rota2', function(){
 
 //FALBACK
 
-route::fallback(function(){
-  //  echo "Pagina nao encontrada. <a href="'route('site.index')'"> acesse aqui </a> ";
-    echo 'Nao encontrada <a href="'.route('site.index').'"> Acesse</a> ';
-});
+//route::fallback(function(){
+//  //  echo "Pagina nao encontrada. <a href="'route('site.index')'"> acesse aqui </a> ";
+//    echo 'Nao encontrada <a href="'.route('site.index').'"> Acesse</a> ';
+//});
 
 
