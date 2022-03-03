@@ -18,8 +18,7 @@ use App\Http\Controllers\ContatoController;
 //});
 
 Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'index'])
-    ->name('site.index')
-    ->middleware(\App\Http\Middleware\LogAcessoMiddleware::class);
+    ->name('site.index')->middleware('log.acesso');
 Route::get('/sobre', [\App\Http\Controllers\SobreNosController::class, 'sobre'])->name('site.sobre');
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.salvaar');
