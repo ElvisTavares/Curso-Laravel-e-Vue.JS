@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\LogAcesso;
 use Closure;
+use http\Env\Response;
 use Illuminate\Http\Request;
 
-class LogAcessoMiddleware
+class AutenticacaoMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,11 @@ class LogAcessoMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $ip = $request->server->get('REMOTE_ADDR');
-        $rota = $request->getRequestUri();
-        LogAcesso::create(['log' =>"IP $ip reuisitou a rota $rota"]);
+       if(true){
+           return $next($request);
+       }else{
+           return Response('Acesso negado');
+       }
 
-        return $next($request);
     }
 }
