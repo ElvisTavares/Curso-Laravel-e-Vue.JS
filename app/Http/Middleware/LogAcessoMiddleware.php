@@ -21,6 +21,8 @@ class LogAcessoMiddleware
         $rota = $request->getRequestUri();
         LogAcesso::create(['log' =>"IP $ip reuisitou a rota $rota"]);
 
-        return $next($request);
+        //return $next($request);
+        $resposta = $next($request);
+        dd($resposta);
     }
 }

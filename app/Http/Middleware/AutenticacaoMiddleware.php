@@ -15,9 +15,21 @@ class AutenticacaoMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $metodo_autenticacao, $perfil)
     {
-       if(true){
+        if($metodo_autenticacao == 'padrao'){
+            echo 'verificar usuario e senha no bd'. '<br>';
+        }
+
+        if($metodo_autenticacao == 'ldap'){
+            echo 'verificar usuario e senha do ad'. '<br>';
+        }
+
+        if ($$perfil == 'visiatante'){
+            echo 'exibir apenas alguns parametros';
+        }
+
+       if(false){
            return $next($request);
        }else{
            return Response('Acesso negado');
