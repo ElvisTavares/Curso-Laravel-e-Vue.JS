@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContatoController;
 /*
@@ -22,7 +23,9 @@ Route::get('/', [\App\Http\Controllers\PrincipalController::class, 'index'])
 Route::get('/sobre', [\App\Http\Controllers\SobreNosController::class, 'sobre'])->name('site.sobre');
 Route::get('/contato', [ContatoController::class, 'contato'])->name('site.contato');
 Route::post('/contato', [ContatoController::class, 'salvar'])->name('site.salvaar');
-Route::get('/login', function(){ return 'Login'; })->name('site.login');
+Route::get('login/{erro?}', [LoginController::class, 'index'])->name('site.login');
+Route::post('login', [LoginController::class, 'autenticar'])->name('site.login');
+//Route::get('/login', function(){ return 'Login'; })->name('site.login');
 
 Route::middleware('autenticacao:padrao, visitante')->prefix('/app')->group(function(){
     Route::get('/clientes', function(){ return 'Clientes'; })->name('app.clientes');

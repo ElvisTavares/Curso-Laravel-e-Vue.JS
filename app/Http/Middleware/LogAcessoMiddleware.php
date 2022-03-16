@@ -23,6 +23,7 @@ class LogAcessoMiddleware
 
         //return $next($request);
         $resposta = $next($request);
-        dd($resposta);
+//        dd($resposta);
+        return $resposta;
     }
 }
